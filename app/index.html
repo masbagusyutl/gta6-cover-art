@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palm City Nights — Cover Art Maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <div>
+      <h1>Palm City Nights</h1>
+      <p>Cover art maker &mdash; turn your photo into a poster</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <label class="btn btn-ghost" for="fileInput">Add photo</label>
+    <input id="fileInput" type="file" accept="image/*" multiple hidden>
+    <button id="exportBtn" class="btn btn-primary" type="button">Export PNG</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="stage" id="dropZone" aria-label="Cover preview">
+    <div class="stage-hint" id="stageHint">Drop a photo anywhere, or pick a sample below</div>
+    <canvas id="preview" width="1080" height="1080"></canvas>
+    <p class="stage-note">Drag on the cover to move the selected panel&rsquo;s photo &middot; scroll to zoom it</p>
+  </section>
+
+  <aside class="panel">
+    <section class="group">
+      <h2>Photos</h2>
+      <div class="thumbs" id="thumbs"></div>
+      <p class="hint">Tap a thumbnail to put it in the selected panel. Your photos stay on this machine &mdash; nothing is uploaded.</p>
+    </section>
+
+    <section class="group">
+      <h2>Layout</h2>
+      <div class="chip-row" id="layoutRow" role="group" aria-label="Layout">
+        <button type="button" data-layout="hero" class="chip is-active">Hero</button>
+        <button type="button" data-layout="split" class="chip">Split</button>
+        <button type="button" data-layout="strip" class="chip">Comic strip</button>
+        <button type="button" data-layout="grid" class="chip">Grid</button>
+      </div>
+      <p class="hint" id="layoutHint">One big photo, caption across the bottom.</p>
+    </section>
+
+    <section class="group">
+      <h2>Selected panel</h2>
+      <div class="row">
+        <label class="field">Zoom
+          <input id="zoomRange" type="range" min="1" max="2.6" step="0.01" value="1.15">
+        </label>
+        <button id="flipBtn" class="btn btn-small" type="button">Flip photo</button>
+      </div>
+      <p class="hint">Drag the cover to pan the selected panel. Click a panel to select it.</p>
+    </section>
+
+    <section class="group">
+      <h2>Caption</h2>
+      <label class="field">Headline
+        <input id="headlineInput" type="text" value="SUNSET HEIST" maxlength="28" spellcheck="false">
+      </label>
+      <label class="field">Sub-caption
+        <input id="subInput" type="text" value="One last ride down the boulevard" maxlength="60" spellcheck="false">
+      </label>
+      <label class="field">Kicker
+        <input id="kickerInput" type="text" value="PALM CITY NIGHTS" maxlength="24" spellcheck="false">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Colour grade</h2>
+      <div class="grade-row" id="gradeRow" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="grade is-active">
+          <span class="swatch sw-sunset"></span>Sunset
+        </button>
+        <button type="button" data-grade="neon" class="grade">
+          <span class="swatch sw-neon"></span>Neon night
+        </button>
+        <button type="button" data-grade="golden" class="grade">
+          <span class="swatch sw-golden"></span>Golden hour
+        </button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Export size</h2>
+      <div class="chip-row" id="sizeRow" role="group" aria-label="Export size">
+        <button type="button" data-size="1080x1080" class="chip is-active">1080 &times; 1080</button>
+        <button type="button" data-size="1080x1350" class="chip">1080 &times; 1350</button>
+        <button type="button" data-size="1920x1080" class="chip">1920 &times; 1080</button>
+      </div>
+      <p class="hint">Exports a PNG at the exact size, ready to post.</p>
+    </section>
+
+    <section class="group samples">
+      <h2>Samples</h2>
+      <div class="sample-row" id="sampleRow"></div>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <span>Made with your own photos &middot; Oswald type, SIL Open Font License</span>
+  <span id="statusLine">Ready</span>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
